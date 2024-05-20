@@ -1,6 +1,5 @@
-import numpy as np
 from random import random
-from time import sleep
+import numpy as np
 
 # Função que gera um array de 6 posições com números aleatórios
 def generate_random_dice():
@@ -37,10 +36,7 @@ def print_matriz(matrix):
 # printar: se True, imprime as matrizes intermediárias
 def rodar_markov(matrix, quantidade, printar=True):
     actual = matrix
-    if printar:
-        print(f"MATRIZ {1} POSIÇÃO:")
-        print_matriz(actual)
-    for i in range(1, quantidade):
+    for i in range(quantidade):
         if printar:
             print()
             print(f"MATRIZ {i+1} POSIÇÃO:")
@@ -48,6 +44,16 @@ def rodar_markov(matrix, quantidade, printar=True):
         if printar:
             print_matriz(actual)
     return actual
+
+def rodar_markov2(matrix, quantidade):
+    actual = matrix
+    lista = []
+    lista.append(actual[0][3]+actual[0][5])
+    for i in range(quantidade):
+        actual = np.dot(actual, matrix)
+        lista.append(actual[0][3]+actual[0][5])
+    return actual, lista
+
 
 # Cria uma matriz considerando as regras do jogo Café ou Acarajé
 # array: array com as probabilidades de cada dado
@@ -60,28 +66,3 @@ def create_matrix(array):
     [array[5], array[4], array[3], array[2], array[1], array[0]],
     [0, 0, 0, 0, 0, 1],
 ])
-
-def printar_dados(array):
-    print(f"1: {array[0]:.2f} \t 2: {array[1]:.2f}\t",
-    f"3: {array[2]:.2f} \t 4: {array[3]:.2f} \t"
-    f"5: {array[4]:.2f} \t 6: {array[5]:.2f}")
-
-def jogar_dados(quantidade, probabilities):
-    data = []
-    if abs(probabilities.sum() - 1) > 0.001:
-        raise ValueError("Probabilidades devem somar 1")
-    for i in range(quantidade):
-        posicao = 1
-        count = 0
-        while True:
-            if posicao == 4 or posicao == 6:
-                break
-            count += 1
-            dado = np.random.choice([1, 2, 3, 4, 5, 6], p=probabilities)
-            if dado + posicao <= 6:
-                posicao += dado
-            else:
-                posicao = abs(posicao - dado)
-        cafe_ou_acaraje = "Café" if posicao == 4 else "Acarajé"
-        data.append((count, cafe_ou_acaraje))
-    return data
