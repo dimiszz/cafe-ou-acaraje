@@ -53,12 +53,13 @@ def rodar_markov(matrix, quantidade, printar=True):
 # array: array com as probabilidades de cada dado
 def create_matrix(array):
     return np.array([
-    [ 0 , array[0], array[1], array[2], array[3]+array[5], array[4]],
-    [ 0 , 0, array[0], array[1]+array[5], array[2]+array[4], array[3]],
-    [ 0 , 0, array[5], array[0]+array[4], array[1]+array[3], array[2]],
-    [ 0 , 0, 0, 1, 0, 0],
-    [array[5], array[4], array[3], array[2], array[1], array[0]],
-    [0, 0, 0, 0, 0, 1],
+    [ 0 , array[0], array[1], array[2], array[3]+array[5], array[4], 0],
+    [ 0 , 0, array[0], array[1]+array[5], array[2]+array[4], array[3], 0],
+    [ 0 , 0, array[5], array[0]+array[4], array[1]+array[3], array[2], 0],
+    [ 0 , 0, 0, 0, 0, 0, 1],
+    [array[5], array[4], array[3], array[2], array[1], array[0], 0],
+    [0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0]
 ])
 
 def printar_dados(array):
