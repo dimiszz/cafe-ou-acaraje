@@ -8,10 +8,8 @@ from matplotlib import pyplot as plt
 
 quantidade_dados = 50
 quantidade_jogadas = 100
-dados = []
-for i in range(quantidade_dados):
-    dados.append(random_dice())
 
+dados = random_dice_array(quantidade_dados)
 dado_escolhido = choice(dados)
 jogadas = play_dice(quantidade_jogadas, dado_escolhido)
 jogadas_unicas = Counter(jogadas)
@@ -70,11 +68,7 @@ for k in range(quantidade_passos):
     acertos = 0
 
     for i in range(quantidade_testes):
-        dados = []
-
-        for j in range(quantidade_dados):
-            dados.append(random_dice())
-        
+        dados = dados = random_dice_array(quantidade_dados)
         dado_escolhido = choice(dados)
         jogadas = play_dice(passo*(k+1), dado_escolhido)
         jogadas_unicas = Counter(jogadas)

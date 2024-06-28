@@ -1,7 +1,7 @@
 import numpy as np
 from random import random
 
-# Função que gera um array de 6 posições com números aleatórios
+# Função que gera um dado com array de 6 posições com números aleatórios
 def random_dice():
     numbers = np.array([0, 0, 0, 0, 0, 0], dtype=float)
     for i in range(len(numbers)):
@@ -11,17 +11,14 @@ def random_dice():
         numbers[i] = numbers[i] / sum_numbers
     return numbers
 
-# Função para calcular a matriz da cadeia de Markov
-# matrix: matriz de transição
-# quantity: quantidade dos passos de Markov
-def markov_chain(matrix, quantity):
-    actual = matrix
-    for i in range(1, quantity):
-        actual = np.dot(actual, matrix)
-    return actual
+# Função que gera um array de dados aleatórios
+def random_dice_array(quantity):
+    dados = []
+    for i in range(quantity):
+        dados.append(random_dice())
+    return dados
 
 # Função para criar uma matriz considerando as regras do jogo Café ou Acarajé
-# p: array com as probabilidades de cada dado
 def create_matrix(p):
     return np.array([
     [    0    ,  p[0]   ,  p[1]   ,  p[2]   ,p[3]+p[5],  p[4]   ,    0    ],
@@ -33,9 +30,14 @@ def create_matrix(p):
     [    0    ,    0    ,    0    ,    0    ,    0    ,    0    ,    0    ]
 ])
 
+# Função para calcular a matriz da cadeia de Markov
+def markov_chain(matrix, quantity):
+    actual = matrix
+    for i in range(1, quantity):
+        actual = np.dot(actual, matrix)
+    return actual
+
 # Função que simula o jogo Café ou Acarajé
-# quantity: quantidade de jogadas
-# probabilities: probabilidades de cada dado
 def play_dice(quantity, probabilities):
     data = []
     for i in range(quantity):
