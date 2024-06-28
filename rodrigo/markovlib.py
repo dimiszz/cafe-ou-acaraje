@@ -81,7 +81,7 @@ def jogar_dados(quantidade, probabilities):
             if dado + posicao <= 6:
                 posicao += dado
             else:
-                posicao = abs(posicao - dado)
+                posicao = 12 - (dado + posicao)
         cafe_ou_acaraje = "Café" if posicao == 4 else "Acarajé"
         data.append((count, cafe_ou_acaraje))
     return data
