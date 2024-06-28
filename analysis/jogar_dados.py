@@ -30,11 +30,16 @@ print_matriz(matrix)
 # f(x) = pos + x, se pos + x <= 6 
 # ou f(x) = |pos - x|, se pos + x > 6
 
+d1 = [0.3, 0.3, 0.3, 0.05, 0.05, 0]
+probabilities = d1
+
 data = []
-array = np.empty(100, dtype=object)
+array = np.empty(20, dtype=object)
 
-
-for i in range(100):
+# 1 2 3 C 5 A 5 C 3 2 1
+# 5 --6-> 1
+# 5 --2-> 5
+for i in range(20):
     posicao = 1
     count = 0
     while True:
@@ -45,7 +50,7 @@ for i in range(100):
         if dado + posicao <= 6:
             posicao += dado
         else:
-            posicao = abs(posicao - dado)
+            posicao = 12 - dado - posicao
 
     cafe_ou_acaraje = "Café" if posicao == 4 else "Acarajé"
     print(f"QUANTIDADE: {count}, RESULTADO: {cafe_ou_acaraje}")

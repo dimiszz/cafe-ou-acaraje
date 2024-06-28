@@ -17,25 +17,33 @@ probabilities = np.array([p1, p2, p3, p4, p5, p6])
 if probabilities.sum() != 1:
     raise ValueError("Probabilidades devem somar 1")
 
-
 # rodando para obter dados visuais
-# new_matrix = create_matrix(probabilities)
-# print_matriz(new_matrix)
-# new_markov = np.dot(new_matrix, new_matrix)
-# print_matriz(new_markov)
-# new_markov2 = np.dot(new_markov, new_matrix)
-# print_matriz(new_markov2)
-# new_markov3 = np.dot(new_markov2, new_matrix)
-# print_matriz(new_markov3)
-# new_markov4 = np.dot(new_markov3, new_matrix)
-# print_matriz(new_markov4)
-# new_markov5 = np.dot(new_markov4, new_matrix)
-# print_matriz(new_markov5)
-# new_markov10 = rodar_markov(new_matrix, 10000, False)
+new_matrix = create_matrix(probabilities)
+print_matriz(new_matrix)
+new_markov = np.dot(new_matrix, new_matrix)
+print_matriz(new_markov)
+new_markov2 = np.dot(new_markov, new_matrix)
+print_matriz(new_markov2)
+new_markov3 = np.dot(new_markov2, new_matrix)
+print_matriz(new_markov3)
+new_markov4 = np.dot(new_markov3, new_matrix)
+print_matriz(new_markov4)
+new_markov5 = np.dot(new_markov4, new_matrix)
+print_matriz(new_markov5)
+new_markov10 = rodar_markov(new_matrix, 10000, False)
 
 
+p1 = 0.1
+p2 = 0.1
+p3 = 0.5
+p4 = 0.05
+p5 = 0.05
+p6 = 0.2
 
-#jogadas = jogar_dados(1000, probabilities=probabilities)
+probabilities = np.array([p1, p2, p3, p4, p5, p6])
+if probabilities.sum() != 1:
+    raise ValueError("Probabilidades devem somar 1")
+
 
 dados = []
 
