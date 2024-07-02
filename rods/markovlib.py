@@ -43,9 +43,7 @@ def play_dice(quantity, probabilities):
     for i in range(quantity):
         posicao = 1
         count = 0
-        while True:
-            if posicao == 4 or posicao == 6:
-                break
+        while (posicao != 4 and posicao != 6):
             count += 1
             dado = np.random.choice([1, 2, 3, 4, 5, 6], p=probabilities)
             if dado + posicao <= 6:
